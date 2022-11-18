@@ -1,0 +1,87 @@
+{
+    "os": "Linux-4.4.0-59-generic-x86_64-with-debian-buster-sid",
+    "python": "3.7.15",
+    "heartbeatAt": "2022-11-18T08:04:11.858261",
+    "startedAt": "2022-11-18T08:04:11.230263",
+    "docker": null,
+    "cuda": null,
+    "args": [
+        "configs/_trash_/faster_rcnn_swin.py"
+    ],
+    "state": "running",
+    "program": "tools/train.py",
+    "codePath": "tools/train.py",
+    "git": {
+        "remote": "https://github.com/open-mmlab/mmdetection.git",
+        "commit": "e71b499608e9c3ccd4211e7c815fa20eeedf18a2"
+    },
+    "email": null,
+    "root": "/opt/ml/baseline/mmdetection",
+    "host": "bf1e094c2800",
+    "username": "root",
+    "executable": "/opt/conda/envs/detection/bin/python3",
+    "cpu_count": 8,
+    "cpu_count_logical": 8,
+    "cpu_freq": {
+        "current": 2200.02,
+        "min": 0.0,
+        "max": 0.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 2200.02,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 2200.02,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 2200.02,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 2200.02,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 2200.02,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 2200.02,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 2200.02,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 2200.02,
+            "min": 0.0,
+            "max": 0.0
+        }
+    ],
+    "disk": {
+        "total": 98.30496215820312,
+        "used": 21.093231201171875
+    },
+    "gpu": "Tesla V100-PCIE-32GB",
+    "gpu_count": 1,
+    "gpu_devices": [
+        {
+            "name": "Tesla V100-PCIE-32GB",
+            "memory_total": 34089730048
+        }
+    ],
+    "memory": {
+        "total": 88.50595092773438
+    }
+}
