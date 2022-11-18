@@ -4,11 +4,11 @@ log_config = dict(
     interval=50,
     hooks=[
         dict(type='TextLoggerHook'),
-        dict(type='WandbLoggerHook', interval=10,
+        dict(type='WandbLoggerHook', interval=10, # WandB Config
              init_kwargs=dict(
                 project='Trash Object Detection',
                 entity = 'fullhouse',
-                name = 'YM_Run' # 실험할때마다 RUN에 찍히는 이름
+                name = 'YM_SWIN_FocalLoss' # 실험할때마다 RUN에 찍히는 이름
             ),
             )
     ])
