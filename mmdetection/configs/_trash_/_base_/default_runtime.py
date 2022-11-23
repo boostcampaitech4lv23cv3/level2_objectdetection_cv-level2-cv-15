@@ -1,14 +1,14 @@
-checkpoint_config = dict(interval=1)
+checkpoint_config = dict(interval=30)
 # yapf:disable
 log_config = dict(
-    interval=50,
+    interval=100,
     hooks=[
         dict(type='TextLoggerHook'),
         dict(type='WandbLoggerHook', interval=10, # WandB Config
              init_kwargs=dict(
                 project='Trash Object Detection',
                 entity = 'fullhouse',
-                name = 'YM_SWIN_FocalLoss' # 실험할때마다 RUN에 찍히는 이름
+                name = 'HJ_cascade_swin_base_bifpn_hard-aug_CosineAnnealing' # 실험할때마다 RUN에 찍히는 이름
             ),
             )
     ])
