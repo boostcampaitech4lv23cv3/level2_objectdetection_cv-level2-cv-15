@@ -1,6 +1,6 @@
 import torch
 import torch.nn as nn
-import torch.nn.functional as f
+import torch.nn.functional as F
 from mmcv.cnn import ConvModule
 from mmcv.runner import BaseModule
 
@@ -22,14 +22,14 @@ class BiFPN(nn.Module):
                  no_norm_on_lateral=False,
                  conv_cfg=None,
                  norm_cfg=None,
-                 activation=None):
+                 act_cfg=None):
         super(BiFPN, self).__init__()
         assert isinstance(in_channels, list)
         self.in_channels = in_channels
         self.out_channels = out_channels
         self.num_ins = len(in_channels)
         self.num_outs = num_outs
-        self.activation = activation
+        self.act_cfg = act_cfg
         self.relu_before_extra_convs = relu_before_extra_convs
         self.no_norm_on_lateral = no_norm_on_lateral
         self.stack = stack
@@ -58,7 +58,7 @@ class BiFPN(nn.Module):
                 1,
                 conv_cfg=conv_cfg,
                 norm_cfg=norm_cfg if not self.no_norm_on_lateral else None,
-                activation=self.activation,
+                act_cfg=self.act_cfg,
                 inplace=False)
             self.lateral_convs.append(l_conv)
 
@@ -67,7 +67,7 @@ class BiFPN(nn.Module):
                                                       levels=self.backbone_end_level - self.start_level,
                                                       conv_cfg=conv_cfg,
                                                       norm_cfg=norm_cfg,
-                                                      activation=activation))
+                                                      act_cfg=act_cfg))
         # add extra conv layers (e.g., RetinaNet)
         extra_levels = num_outs - self.backbone_end_level + self.start_level
         if add_extra_convs and extra_levels >= 1:
@@ -84,16 +84,10 @@ class BiFPN(nn.Module):
                     padding=1,
                     conv_cfg=conv_cfg,
                     norm_cfg=norm_cfg,
-                    activation=self.activation,
+                    act_cfg=self.act_cfg,
                     inplace=False)
                 self.fpn_convs.append(extra_fpn_conv)
-
-    # default init_weights for conv(msra) and norm in ConvModule
-    def init_weights(self):
-        for m in self.modules():
-            if isinstance(m, nn.Conv2d):
-                xavier_init(m, distribution='uniform')
-
+                    
     def forward(self, inputs):
         assert len(inputs) == len(self.in_channels)
 
@@ -127,7 +121,6 @@ class BiFPN(nn.Module):
                         outs.append(self.fpn_convs[i](F.relu(outs[-1])))
                     else:
                         outs.append(self.fpn_convs[i](outs[-1]))
-        print(outs.shape) ##
         return tuple(outs)
 
 
@@ -138,10 +131,10 @@ class BiFPNModule(nn.Module):
                  init=0.5,
                  conv_cfg=None,
                  norm_cfg=None,
-                 activation=None,
+                 act_cfg=None,
                  eps=0.0001):
         super(BiFPNModule, self).__init__()
-        self.activation = activation
+        self.act_cfg = act_cfg
         self.eps = eps
         self.levels = levels
         self.bifpn_convs = nn.ModuleList()
@@ -160,16 +153,10 @@ class BiFPNModule(nn.Module):
                         padding=1,
                         conv_cfg=conv_cfg,
                         norm_cfg=norm_cfg,
-                        activation=self.activation,
+                        act_cfg=self.act_cfg,
                         inplace=False)
                 )
                 self.bifpn_convs.append(fpn_conv)
-
-    # default init_weights for conv(msra) and norm in ConvModule
-    def init_weights(self):
-        for m in self.modules():
-            if isinstance(m, nn.Conv2d):
-                xavier_init(m, distribution='uniform')
 
     def forward(self, inputs):
         assert len(inputs) == self.levels
