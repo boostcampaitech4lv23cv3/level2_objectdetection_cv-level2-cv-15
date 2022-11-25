@@ -8,7 +8,7 @@ log_config = dict(
              init_kwargs=dict(
                 project='Trash Object Detection',
                 entity = 'fullhouse',
-                name = 'HJ_cascade_swin_base_bifpn_hard-aug_CosineAnnealing' # 실험할때마다 RUN에 찍히는 이름
+                name = 'HJ_cascade_swin_large_fpn_soft-nms_multi-scale' # 실험할때마다 RUN에 찍히는 이름
             ),
             )
     ])
