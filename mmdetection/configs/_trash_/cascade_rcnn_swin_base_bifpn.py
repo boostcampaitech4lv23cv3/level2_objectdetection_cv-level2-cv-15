@@ -31,5 +31,4 @@ model = dict(
 neck=dict(
     type='BiFPN',
     in_channels=[128, 128*2, 128*4, 128*8],
-    out_channels=128,
     num_outs=5)
