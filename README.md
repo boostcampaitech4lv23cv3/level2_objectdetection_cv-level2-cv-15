@@ -4,7 +4,7 @@
 
 분리수거는 증가하는 쓰레기양을 줄여 환경 부담을 줄일 수 있는 방법 중 하나입니다. 사진에서 쓰레기를 Detection 하는 모델을 만들어 분리수거를 더 쉽게 도와주어 쓰레기 문제를 해결하고자 합니다.
 
-<img src="./image/trash_image.png" alt="trash" style="zoom:30%;" />
+<p align="center"><img src="./image/trash_image.png" alt="trash" width="40%" height="40%" /></p>
 
 
 
@@ -15,7 +15,7 @@
 - 이미지 크기 : (1024, 1024)
 - Annotation File (COCO format) : 이미지 내 객체의 위치 및 클래스 정보
 
-<img src="./image/dataset.png" alt="trash" style="zoom:30%;" />
+<p align="center"><img src="./image/dataset.png" alt="trash" width="40%" height="40%" /></p>
 
 
 
@@ -72,17 +72,17 @@
 
 - 2-Stage Ensemble
 
-  <img src="./image/2stage.png" alt="trash" style="zoom:20%;" />
+  <p align="center"><img src="./image/2stage.png" alt="trash" width="60%" height="60%" /></p>
 
 - 1-Stage Ensemble
 
-  <img src="./image/1stage.png" alt="trash" style="zoom:40%;" />
+  <p align="center"><img src="./image/1stage.png" alt="trash" width="60%" height="60%" /></p>
 
   
 
 - Score
 
-  <img src="./image/score.png" alt="trash" style="zoom:100%;" />
+  <p align="center"><img src="./image/score.png" alt="trash" width="100%" height="100%" /></p>
 
 
 
